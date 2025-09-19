@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathpix OCR - Mathematical Exercise Reader</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Mathpix OCR</h1>
+            <p>Upload an image of a mathematical exercise to extract the text using OCR</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <h3>Click to upload or drag and drop</h3>
+                        <p>Supported formats: JPG, PNG, GIF, BMP, WEBP</p>
+                        <input type="file" id="imageInput" accept="image/*" hidden>
+                    </div>
+                </div>
+                
+                <div class="image-preview" id="imagePreview" style="display: none;">
+                    <img id="previewImg" alt="Uploaded image">
+                    <button id="processBtn" class="process-btn">Process with Mathpix OCR</button>
+                </div>
+            </div>
+
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Processing image with Mathpix OCR...</p>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h2>OCR Results</h2>
+                
+                <div class="result-card">
+                    <h3>📝 Extracted Text</h3>
+                    <div class="result-content" id="extractedText"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>🔢 Rendered Math</h3>
+                    <div class="result-content math-render" id="renderedMath"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>📊 Image Information</h3>
+                    <div class="result-content" id="imageInfo"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>🔍 Raw Response</h3>
+                    <details>
+                        <summary>View full API response</summary>
+                        <pre id="rawResponse"></pre>
+                    </details>
+                </div>
+
+                <div class="ai-check-section">
+                    <button id="checkExerciseBtn" class="check-btn">🤖 Check Exercise with AI</button>
+                    <button id="debugBtn" class="debug-btn" style="display: none;">🔍 Debug AI Logs</button>
+                </div>
+            </div>
+
+            <div class="ai-results-section" id="aiResultsSection" style="display: none;">
+                <h2>🤖 AI Exercise Analysis</h2>
+                
+                <div class="result-card ai-analysis">
+                    <h3>📝 Analysis Result</h3>
+                    <div class="result-content" id="aiAnalysis"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>✅ Correctness Status</h3>
+                    <div class="result-content status-indicator" id="correctnessStatus"></div>
+                </div>
+
+                <div class="result-card">
+                    <h3>💡 Suggestions & Explanations</h3>
+                    <div class="result-content" id="aiSuggestions"></div>
+                </div>
+            </div>
+
+            <div class="error-section" id="errorSection" style="display: none;">
+                <div class="error-card">
+                    <h3>❌ Error</h3>
+                    <p id="errorMessage"></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Debug Modal -->
+    <div id="debugModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔍 AI Debug Logs</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="debug-section">
+                    <h3>📤 Request to OpenAI</h3>
+                    <div class="debug-content">
+                        <h4>Prompt Sent:</h4>
+                        <pre id="debugPrompt"></pre>
+                        <h4>Full Request Body:</h4>
+                        <pre id="debugRequest"></pre>
+                    </div>
+                </div>
+                
+                <div class="debug-section">
+                    <h3>📥 Response from OpenAI</h3>
+                    <div class="debug-content">
+                        <h4>Raw Response:</h4>
+                        <pre id="debugResponse"></pre>
+                        <h4>Parsed Content:</h4>
+                        <pre id="debugParsed"></pre>
+                    </div>
+                </div>
+                
+                <div class="debug-section">
+                    <h3>⚠️ Issues Detected:</h3>
+                    <div id="debugIssues" class="debug-issues"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
