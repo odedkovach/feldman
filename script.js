@@ -5,9 +5,9 @@ const MATHPIX_CONFIG = {
     endpoint: 'https://api.mathpix.com/v3/text'
 };
 
-// OpenAI API configuration
-const OPENAI_CONFIG = {
-    api_key: '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',
+
+const demo_CONFIG = {
+    demo: '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',
     endpoint: 'https://api.openai.com/v1/chat/completions',
     model: 'gpt-4o-mini'
 };
@@ -340,7 +340,7 @@ ${extractedText}
 
         // Prepare request body
         const requestBody = {
-            model: OPENAI_CONFIG.model,
+            model: demo_CONFIG.model,
             temperature: 0.1,
             max_tokens: 800,
             messages: [
@@ -359,11 +359,11 @@ ${extractedText}
         debugData.request = requestBody;
 
         // Make request to OpenAI API
-        const response = await fetch(OPENAI_CONFIG.endpoint, {
+        const response = await fetch(demo_CONFIG.endpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${OPENAI_CONFIG.api_key}`
+                'Authorization': `Bearer ${demo_CONFIG.demo}`
             },
             body: JSON.stringify(requestBody)
         });
