@@ -7,7 +7,7 @@ const MATHPIX_CONFIG = {
 
 // OpenAI API configuration
 const OPENAI_CONFIG = {
-    api_key: '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',
+    api_key: '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',
     endpoint: 'https://api.openai.com/v1/chat/completions',
     model: 'gpt-4o-mini'
 };
